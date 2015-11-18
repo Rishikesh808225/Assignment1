@@ -1,0 +1,611 @@
+<html>
+<head>
+<title> Assignment 1 </title>
+<script src="scripts/processing.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+
+boolean first;//If a number is pressed or not and inserts the first asterisk. 
+boolean second;//If a number is pressed or not and inserts the second asterisk. 
+boolean third;//If a number is pressed or not and inserts the third asterisk. 
+boolean fourth;//If a number is pressed or not and inserts the fourth asterisk. 
+
+boolean code1;//Holds the info of the correct code digit being pressed. 0
+boolean code2;//Holds the info of the correct code digit being pressed. 8
+boolean code3;//Holds the info of the correct code digit being pressed. 5
+boolean code4;//Holds the info of the correct code digit being pressed. 2
+
+boolean incorrect1;
+boolean incorrect2;
+boolean incorrect3;
+boolean incorrect4;
+
+int rectHeight;//The height of the keypad's squares.
+int rectLength;//The length of the keypad's squares.
+int rectGap;//The gap between the keypad's squares.
+
+int z;//For mouse clicks.
+int y;//For incorrect password. 
+
+PImage one;
+PImage two;
+PImage three;
+PImage four;
+PImage five;
+PImage six;
+PImage seven;
+PImage eight;
+PImage nine;
+PImage asterisk;
+PImage welcome;
+PImage incorrectpwd;
+PImage clear;
+
+void setup()
+{
+
+	size(750,435);
+	frameRate( 30 );
+	rectHeight = 100;
+	rectLength = 100;
+	rectGap = 7;
+	
+	first = false;
+	second = false;
+	third = false;
+	fourth = false;
+	
+	code1 = false;
+	code2 = false;
+	code3 = false;
+	code4 = false;
+	
+	incorrect1 = false;
+	incorrect2 = false;
+	incorrect3 = false;
+	incorrect4 = false;
+	
+	a = 1;
+	b = 2;
+	c = 3;
+	d = 4;
+	z = 1;
+	y = 0;
+	
+	one = loadImage("images/1.png")
+	two = loadImage("images/2.png")
+	three = loadImage("images/3.png")
+	four = loadImage("images/4.png")
+	five = loadImage("images/5.png")
+	six = loadImage("images/6.png")
+	seven = loadImage("images/7.png")
+ 	eight = loadImage("images/8.png")
+ 	nine = loadImage("images/9.png")
+ 	zero = loadImage("images/zero.png")
+ 	asterisk = loadImage("images/asterisk.png")
+ 	hash = loadImage("images/hash.png")
+ 	welcome = loadImage("images/welcome.png")
+ 	incorrectpwd = loadImage("images/incorrectpwd.png")
+ 	clear = loadImage("images/clear.png")														
+	
+}
+
+	
+void draw()
+{
+
+	background(0,0,0);
+	
+	text(mouseX,350,20)
+	text(mouseY,350,40)
+	
+	rect(rectGap,rectGap,+rectLength,+rectHeight);	
+	rect(rectGap,rectGap*2+rectHeight,+rectLength,+rectHeight);	
+	rect(rectGap,rectGap*3+rectHeight*2,+rectLength,+rectHeight);
+	rect(rectGap,rectGap*4+rectHeight*3,+rectLength,+rectHeight);
+	
+	rect(rectGap*2+rectLength,rectGap,+rectLength,+rectHeight);	
+	rect(rectGap*2+rectLength,rectGap*2+rectHeight,+rectLength,+rectHeight);	
+	rect(rectGap*2+rectLength,rectGap*3+rectHeight*2,+rectLength,+rectHeight);
+	rect(rectGap*2+rectLength,rectGap*4+rectHeight*3,+rectLength,+rectHeight);
+	
+	rect(rectGap*3+rectLength*2,rectGap,+rectLength,+rectHeight);	
+	rect(rectGap*3+rectLength*2,rectGap*2+rectHeight,+rectLength,+rectHeight);	
+	rect(rectGap*3+rectLength*2,rectGap*3+rectHeight*2,+rectLength,+rectHeight);
+	rect(rectGap*3+rectLength*2,rectGap*4+rectHeight*3,+rectLength,+rectHeight);
+	
+	rect(rectGap*3+rectLength*3+rectLength*0.125,rectGap*2+rectLength*1.5,+rectLength*4,+rectGap*2+rectLength);
+	
+	
+	
+	image(one,rectGap,rectGap,+rectLength,+rectHeight);
+	image(two,rectGap*2+rectLength,rectGap,+rectLength,+rectHeight);
+	image(three,rectGap*3+rectLength*2,rectGap,+rectLength,+rectHeight);
+	image(four,rectGap,rectGap*2+rectHeight,+rectLength,+rectHeight);
+	image(five,rectGap*2+rectLength,rectGap*2+rectHeight,+rectLength,+rectHeight);
+	image(six,rectGap*3+rectLength*2,rectGap*2+rectHeight,+rectLength,+rectHeight);
+	image(seven,rectGap,rectGap*3+rectHeight*2,+rectLength,+rectHeight);
+	image(eight,rectGap*2+rectLength,rectGap*3+rectHeight*2,+rectLength,+rectHeight);
+	image(nine,rectGap*3+rectLength*2,rectGap*3+rectHeight*2,+rectLength,+rectHeight);
+	image(zero,rectGap*2+rectLength,rectGap*4+rectHeight*3,+rectLength,+rectHeight);
+	image(asterisk,rectGap,rectGap*4+rectHeight*3,+rectLength,+rectHeight);
+	image(hash,rectGap*3+rectLength*2,rectGap*4+rectHeight*3,+rectLength,+rectHeight);
+
+	//1
+	if (mousePressed == true && mouseButton == LEFT && z == 1)
+	{  
+		if(mouseX < rectGap+rectLength && mouseX > rectGap &&
+		   mouseY < rectGap+rectHeight && mouseY > rectGap)
+		   {
+		   		if(first == false)
+		   		{
+		   			first = true
+		   			incorrect1 = true
+		   			z = 0
+		   		}
+		   		else if(first == true && second == false)
+		   		{
+		   			second = true
+		   			incorrect2 = true
+		   			z = 0
+		   		}
+		   		else if(second == true && third == false)
+		   		{
+		   			third = true
+		   			incorrect3 = true
+		   			z = 0
+		   		}
+		   		else if(third == true && fourth == false)
+		   		{
+		   			fourth = true
+		   			incorrect4 = true
+		   			z = 0
+		   		}		
+		   }
+	}
+	
+	//2
+	if (mousePressed == true && mouseButton == LEFT && z == 1)
+	{  
+		if(mouseX < rectGap*2+rectLength+rectLength && mouseX > rectGap*2+rectLength &&
+		   mouseY < rectGap+rectHeight && mouseY > rectGap)
+		   {
+		   		if(first == false)
+		   		{
+		   			first = true
+		   			incorrect1 = true
+		   			z = 0
+		   		}
+		   		else if(first == true && second == false)
+		   		{
+		   			second = true
+		   			incorrect2 = true
+		   			z = 0
+		   		}
+		   		else if(second == true && third == false)
+		   		{
+		   			third = true
+		   			incorrect3 = true
+		   			z = 0
+		   		}
+		   		else if(third == true && fourth == false)
+		   		{
+		   			fourth = true
+		   			code4 = true
+		   			z = 0
+		   		}		
+		   }
+	}
+	
+	//3
+	if (mousePressed == true && mouseButton == LEFT && z == 1)
+	{  
+		if(mouseX < rectGap*3+rectLength*2+rectLength && mouseX > rectGap*3+rectLength*2 &&
+		   mouseY < rectGap+rectHeight && mouseY > rectGap)
+		   {
+		   		if(first == false)
+		   		{
+		   			first = true
+		   			incorrect1 = true
+		   			z = 0
+		   		}
+		   		else if(first == true && second == false)
+		   		{
+		   			second = true
+		   			incorrect2 = true
+		   			z = 0
+		   		}
+		   		else if(second == true && third == false)
+		   		{
+		   			third = true
+		   			incorrect3 = true
+		   			z = 0
+		   		}
+		   		else if(third == true && fourth == false)
+		   		{
+		   			fourth = true
+		   			incorrect4 = true
+		   			z = 0
+		   		}		
+		   }
+	}
+	
+	//4
+	if (mousePressed == true && mouseButton == LEFT && z ==1)
+	{  
+		if(mouseX < rectGap+rectLength && mouseX > rectGap &&
+		   mouseY < rectGap*2+rectHeight+rectHeight && mouseY > rectGap*2+rectHeight)
+		   {
+		   		if(first == false)
+		   		{
+		   			first = true;
+		   			incorrect1 = true
+		   			z = 0
+		   		}
+		   		else if(first == true && second == false)
+		   		{
+		   			second = true;
+		   			incorrect2 = true
+		   			z = 0
+		   		}
+		   		else if(second == true && third == false)
+		   		{
+		   			third = true;
+		   			incorrect3 = true
+		   			z = 0
+		   		}
+		   		else if(third == true && fourth == false)
+		   		{
+		   			fourth = true;
+		   			incorrect4 = true
+		   			z = 0
+		   		}		
+		   }
+	}
+	
+	//5
+	if (mousePressed == true && mouseButton == LEFT && z == 1)
+	{  
+		if(mouseX < rectGap*2+rectLength+rectLength && mouseX > rectGap*2+rectLength &&
+		   mouseY < rectGap*2+rectHeight+rectHeight && mouseY > rectGap*2+rectHeight)
+		   {
+		   		if(first == false)
+		   		{
+		   			first = true;
+		   			incorrect1 = true
+		   			z = 0
+		   		}
+		   		else if(first == true && second == false)
+		   		{
+		   			second = true;	
+		   			incorrect2 = true
+		   			z = 0
+		   		}
+		   		else if(second == true && third == false)
+		   		{
+		   			third = true;
+		   			code3 = true
+		   			z = 0
+		   		}
+		   		else if(third == true && fourth == false)
+		   		{
+		   			fourth = true;
+		   			incorrect4 = true
+		   			z = 0
+		   		}		
+		   }
+	}
+	
+	//6
+	if (mousePressed == true && mouseButton == LEFT && z == 1)
+	{  
+		if(mouseX < rectGap*3+rectLength*2+rectLength && mouseX > rectGap*3+rectLength*2 &&
+		   mouseY < rectGap*2+rectHeight+rectHeight && mouseY > rectGap*2+rectHeight)
+		   {
+		   		if(first == false)
+		   		{
+		   			first = true;
+		   			incorrect1 = true
+		   			z = 0
+		   		}
+		   		else if(first == true && second == false)
+		   		{
+		   			second = true;
+		   			incorrect2 = true
+		   			z = 0
+		   			
+		   		}
+		   		else if(second == true && third == false)
+		   		{
+		   			third = true;
+		   			incorrect3 = true
+		   			z = 0
+		   		}
+		   		else if(third == true && fourth == false)
+		   		{
+		   			fourth = true;
+		   			incorrect4 = true
+		   			z = 0
+		   		}		
+		   }
+	}
+	
+	//7
+	if (mousePressed == true && mouseButton == LEFT && z == 1)
+	{  
+		if(mouseX < rectGap+rectLength && mouseX > rectGap &&
+		   mouseY < rectGap*3+rectHeight*2+rectHeight && mouseY > rectGap*3+rectHeight*2)
+		   {
+		   		if(first == false)
+		   		{
+		   			first = true;
+		   			incorrect1 = true
+		   			z = 0
+		   		}
+		   		else if(first == true && second == false)
+		   		{
+		   			second = true;
+		   			incorrect2 = true
+		   			z = 0
+		   		}
+		   		else if(second == true && third == false)
+		   		{
+		   			third = true;
+		   			incorrect3 = true
+		   			z = 0
+		   		}
+		   		else if(third == true && fourth == false)
+		   		{
+		   			fourth = true;
+		   			incorrect4 = true
+		   			z = 0
+		   		}		
+		   }
+	}
+	
+	//8
+	if (mousePressed == true && mouseButton == LEFT && z == 1)
+	{  
+		if(mouseX < rectGap*2+rectLength+rectLength && mouseX > rectGap*2+rectLength &&
+		   mouseY < rectGap*3+rectHeight*2+rectHeight && mouseY > rectGap*3+rectHeight*2)
+		   {
+		   		if(first == false)
+		   		{
+		   			first = true;
+		   			incorrect1 = true
+		   			z = 0
+		   		}
+		   		else if(first == true && second == false)
+		   		{
+		   			second = true;
+		   			code2 = true
+		   			z = 0
+		   		}
+		   		else if(second == true && third == false)
+		   		{
+		   			third = true;
+		   			incorrect3 = true
+		   			z = 0
+		   		}
+		   		else if(third == true && fourth == false)
+		   		{
+		   			fourth = true;
+		   			incorrect4 = true
+		   			z = 0
+		   		}		
+		   }
+	}
+	
+	//9
+	if (mousePressed == true && mouseButton == LEFT && z == 1)
+	{  
+		if(mouseX < rectGap*3+rectLength*2+rectLength && mouseX > rectGap*3+rectLength*2 &&
+		   mouseY < rectGap*3+rectHeight*2+rectHeight && mouseY > rectGap*3+rectHeight*2)
+		   {
+		   		if(first == false)
+		   		{
+		   			first = true;
+		   			incorrect1 = true
+		   			z = 0
+		   		}
+		   		else if(first == true && second == false)
+		   		{
+		   			second = true;
+		   			incorrect2 = true
+		   			z = 0
+		   		}
+		   		else if(second == true && third == false)
+		   		{
+		   			third = true;
+		   			incorrect3 = true
+		   			z = 0
+		   		}
+		   		else if(third == true && fourth == false)
+		   		{
+		   			fourth = true;
+		   			incorrect4 = true
+		   			z = 0
+		   		}		
+		   }
+	}
+	
+	//*
+	if (mousePressed == true && mouseButton == LEFT && z == 1)
+	{  
+		if(mouseX < rectGap+rectLength && mouseX > rectGap &&
+		   mouseY < rectGap*4+rectHeight*3+rectHeight && mouseY > rectGap*4+rectHeight*3)
+		   {
+		   		if(first == false)
+		   		{
+		   			first = true;
+		   			incorrect1 = true
+		   			z = 0
+		   		}
+		   		else if(first == true && second == false)
+		   		{
+		   			second = true
+		   			incorrect2 = true
+		   			z = 0
+		   		}
+		   		else if(second == true && third == false)
+		   		{
+		   			third = true;
+		   			incorrect3 = true
+		   			z = 0
+		   		}
+		   		else if(third == true && fourth == false)
+		   		{
+		   			fourth = true;
+		   			incorrect4 = true
+		   			z = 0
+		   		}		
+		   }
+	}
+	
+	//0
+	if (mousePressed == true && mouseButton == LEFT && z == 1)
+	{  
+		if(mouseX < rectGap*2+rectLength+rectLength && mouseX > rectGap*2+rectLength &&
+		   mouseY < rectGap*4+rectHeight*3+rectHeight && mouseY > rectGap*4+rectHeight*3)
+		   {
+		   		if(first == false)
+		   		{
+		   			first = true;
+		   			code1 = true;
+		   			z = 0
+		   		}
+		   		else if(first == true && second == false)
+		   		{
+		   			second = true;
+		   			incorrect2 = true
+		   			z = 0
+		   		}
+		   		else if(second == true && third == false)
+		   		{
+		   			third = true;
+		   			incorrect3 = true
+		   			z = 0
+		   		}
+		   		else if(third == true && fourth == false)
+		   		{
+		   			fourth = true;
+		   			incorrect4 = true
+		   			z = 0
+		   		}		
+		   }
+	}
+	
+	//#
+	if (mousePressed == true && mouseButton == LEFT && z == 1)
+	{  
+		if(mouseX < rectGap*3+rectLength*2+rectLength && mouseX > rectGap*3+rectLength*2 &&
+		   mouseY < rectGap*4+rectHeight*3+rectHeight && mouseY > rectGap*4+rectHeight*3)
+		   {
+		   		if(first == false)
+		   		{
+		   			first = true;
+		   			incorrect1 = true
+					z = 0
+		   		}
+		   		else if(first == true && second == false)
+		   		{
+		   			second = true;
+		   			incorrect2 = true
+		   			z = 0
+		   		}
+		   		else if(second == true && third == false)
+		   		{
+		   			third = true;
+		   			incorrect3 = true
+		   			z = 0
+		   		}
+		   		else if(third == true && fourth == false)
+		   		{
+		   			fourth = true;
+		   			incorrect4 = true
+		   			z = 0
+		   		}		
+		   }
+	}
+	
+	if(mousePressed == false)
+	{
+		z = 1;
+	}
+	
+	if (first == true)
+	{
+		image(asterisk,335,165);
+	}
+	
+	if (second == true && first == true)
+	{
+		image(asterisk,435,165);
+	}
+	
+	if (third == true && second == true)
+	{	
+		image(asterisk,535,165);
+	}
+	
+	if (fourth == true && third == true	)
+	{
+		image(asterisk,635,165);
+	}
+	
+	if (code1 == true && code2 == true && code3 == true && code4 == true)
+	{
+		fill(0,0,0)
+		rect(0,0,750,435)
+		image(welcome,0,0)
+	}
+	
+	if (incorrect1 == true)
+	{
+		y=y+1;
+	}
+	
+	if (incorrect2 == true)
+	{
+		y=y+1
+	}
+	
+	if (incorrect3 == true)
+	{
+		y=y+1	
+	}
+	
+	if (incorrect4 == true)
+	{
+		y=y+1
+	}
+	
+	if (y > 0 && first == true && second == true && third == true && fourth == true)
+	{
+		image(incorrectpwd,335,280)
+		image(clear,335,50)
+	}
+	
+	if (mousePressed == true && mouseButton == LEFT)
+	{
+		if (mouseX > 335 && mouseX < 735 &&
+			mouseY > 50 && mouseY < 165 && z == 1)
+		{
+			link("index.html")
+			z = 0
+		}
+	}
+	
+}
+
+
+
+
+</script>
+<canvas id="mycanvas"></canvas>
+</head>
+
+<body>
+
+</body>
+</html>
+
